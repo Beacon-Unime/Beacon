@@ -18,7 +18,11 @@
     "passport": "^0.3.2",
     "passport-local": "^1.0.0",
     "passport-local-mongoose": "^4.0.0",
-    "vue": "~1.0.20"
+    "vue": "~1.0.20",
+    "vue-resource": "~0.7.0",
+    "bootstrap": "~3.3.6",
+    "webpack-dev-server": "~1.14.1",
+    "webpack": "~1.12.14"
   },
   "devDependencies": {
     "express": "~4.13.4"

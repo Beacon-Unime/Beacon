@@ -3,7 +3,7 @@ var passport = require('passport');
 var Account = require('../models/account');
 var router = express.Router();
 
-router.get('/', function (req, res) {
+router.get('/', ensureAuthenticated, function (req, res) {
   res.render('index', { user : req.user });
 });
 
@@ -39,5 +39,11 @@ router.get('/logout', function(req, res) {
 router.get('/ping', function(req, res){
   res.status(200).send("pong!");
 });
+
+
+function ensureAuthenticated(req, res, next) {
+  if (req.isAuthenticated()) { return next(); }
+  res.redirect('/login')
+}
 
 module.exports = router;

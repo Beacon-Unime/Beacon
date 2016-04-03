@@ -73,6 +73,7 @@ Vagrant.configure(2) do |config|
      npm install
      sudo npm install -g express
      sudo npm install -g mongodb
+     sudo npm install -g vue-cli
      # node bin/www
   SHELL
 end
