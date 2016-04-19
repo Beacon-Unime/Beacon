@@ -1,0 +1,41 @@
+{
+  "data":
+      [
+        {
+          "uuid": "c50158d1-b134-4b4e-92cb-98b853e3d678",
+          "name": "Sample Template 1",
+          "user": "Sample User 1",
+          "version": "1.1.0",
+          "date": "2015/05/12"
+        },
+        {
+          "uuid": "558103e0-0a03-48c0-9d56-3993ff1838b9",
+          "name": "Sample Template 1",
+          "user": "Sample User 1",
+          "version": "1.1.1",
+          "date": "2015/05/25"
+        },
+        {
+          "uuid": "e9b0d4f3-cefc-4c96-a3ea-61aa757ba654",
+          "name": "Sample Template 2",
+          "user": "Sample User 2",
+          "version": "0.8.1",
+          "date": "2016/01/12"
+        },
+        {
+          "uuid": "8108daf8-4135-430d-8d46-6f9bb11fa213",
+          "name": "Sample Template 2",
+          "user": "Sample User 2",
+          "version": "0.8.2",
+          "date": "2016/02/01"
+        },
+        {
+          "uuid": "b7e2afb9-de2e-4d3b-9906-4f89e643890d",
+          "name": "Sample Template 2",
+          "user": "Sample User 2",
+          "version": "0.9.0",
+          "date": "2016/03/12"
+        }
+      ],
+  "count": 5
+}
