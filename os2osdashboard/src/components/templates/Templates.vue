@@ -3,6 +3,7 @@
 
 <template>
 <div id="templates">
+  <!-- example format: see /static/test/templates.json-->
   <v-server-table url="/static/test/templates.json" :options="options"></v-server-table>
 </div>
 </template>

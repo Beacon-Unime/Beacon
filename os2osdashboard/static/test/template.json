@@ -1,0 +1,11 @@
+{
+  "template": "outputs:\n  out_B_private_ip:\n    description: Floating IP address of A server in public network\n    value:\n      get_attr: [B, first_address]\nheat_template_version: '2014-10-16'\ndescription: empty_descr\nresources:\n  B:\n    type: OS::Nova::Server\n    properties:\n      key_name: {get_param: key_name}\n      flavor: m1.tiny\n      image: {get_param: cirros}\n      name: testDemo\nparameters:\n  key_name: {default: heat_key, description: Name of keypair to assign to servers,\n    type: string}\n  cirros: {default: cirros-0.3.4-x86_64-uec, description: description, type: string}\n",
+  "templateRef":"null",
+  "templateName":"testManifest",
+  "returncode":0,
+  "insertTimestamp":1461076672432,
+  "id":"f7302186-00fd-4238-afea-d15d37901c94",
+  "errormesg":"None",
+  "version":0.1,
+  "user":"admin"
+}
