@@ -31,7 +31,6 @@ export default {
     layer01.addTo(this.map)
     // Disable drag and zoom handlers.
 
-    /*
     this.map.dragging.disable()
     this.map.touchZoom.disable()
     this.map.doubleClickZoom.disable()
@@ -40,7 +39,7 @@ export default {
 
     // Disable tap handler, if present.
     if (this.map.tap) this.map.tap.disable()
-    */
+
     this.$http.get('/static/test/datacenters.json').then(function (response) {
       var clouds = response.data
       this.$set('clouds', clouds)

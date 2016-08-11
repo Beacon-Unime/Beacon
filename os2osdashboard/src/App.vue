@@ -30,4 +30,5 @@ import Vue from 'vue'
 
 var NavBar = Vue.extend(require('./components/NavBar.vue'))
 Vue.component('navbar', NavBar)
+
 </script>

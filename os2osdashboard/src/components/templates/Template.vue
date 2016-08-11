@@ -27,6 +27,15 @@
             <td>Version</td>
             <td>{{template.version}}</td>
           </tr>
+          <tr>
+            <td>Parent template</td>
+            <td>
+              <p v-if="template.hasParent">
+                <a href='#!/templates/{{template.templateRef}}'>{{template.templateRef}}</a>
+              </p>
+              <p v-else>-</p>
+            </td>
+          </tr>
         </table>
       </div>
     </div>
@@ -57,6 +66,8 @@
       this.$http.get('/static/test/template.json', function (template) {
         console.error(template.insertTimestamp)
         template.creationDate = new Date(template.insertTimestamp)
+        template.hasParent = (template.templateRef !== 'null')
+        console.error(template.hasParent)
         this.$set('template', template)
       })
     }
