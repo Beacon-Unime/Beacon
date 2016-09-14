@@ -4,7 +4,8 @@
 <template>
 <div id="templates">
   <!-- example format: see /static/test/templates.json-->
-  <v-server-table url="/static/test/templates.json" :options="options"></v-server-table>
+  <!-- http://10.9.240.10:8080/OSFFM/os2os/beacon/templates/ -->
+  <v-server-table url="http://10.9.240.10:8080/OSFFM/os2os/beacon/templates/" :columns="columns" :options="options"></v-server-table>
 </div>
 </template>
 
@@ -19,8 +20,8 @@ module.exports = {
   el () { return '#templates' },
   data () {
     return {
+      columns: ['uuid', 'name', 'user', 'version', 'date', 'edit', 'status', 'deploy'],
       options: {
-        columns: ['uuid', 'name', 'user', 'version', 'date', 'edit', 'status', 'deploy'],
         templates: {
           edit: "<a href='#!/templates/{uuid}/edit'><i class='fa fa-edit fa-fw'></i></a>",
           status: "<a href='#!/templates/{uuid}/map'><i class='fa fa-globe fa-fw'></i></a>",

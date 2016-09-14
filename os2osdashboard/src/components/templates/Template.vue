@@ -40,8 +40,8 @@
       </div>
     </div>
     <div class="col-lg-5">
+      <button class="btn btn-primary" v-on:click="editTemplate">Save</button>
       <a href='#!/dashboard'>Save and Deploy<i class='fa fa-play-circle fa-fw'></i></a><br/>
-      <a href='#!/dashboard'>Save<i class='fa fa-save fa-fw'></i></a>
     </div>
 
     <textarea rows="8" cols="50" name="codem" id="codem">
@@ -55,24 +55,34 @@
   import Vue from 'vue'
   import VueResource from 'vue-resource'
   Vue.use(VueResource)
+  var endpoint = 'http://10.9.240.10:8080/OSFFM/os2os/beacon/'
   module.exports = {
-    el () { return '#template' },
+    el () {
+      return '#template'
+    },
     data () {
       return {
         template: {}
       }
     },
     ready: function () {
-      this.$http.get('/static/test/template.json', function (template) {
-        console.error(template.insertTimestamp)
+      this.$http.get(endpoint + 'templates/' + this.$route.params.id).then((response) => {
+        var template = response.data
         template.creationDate = new Date(template.insertTimestamp)
         template.hasParent = (template.templateRef !== 'null')
-        console.error(template.hasParent)
         this.$set('template', template)
+      }, (response) => {
+        console.error('error')
       })
+    },
+    methods: {
+      editTemplate: function () {
+        this.$http.put(endpoint + 'templates/' + this.template.id, this.template).then((response) => {
+          console.log('SUCCESS')
+        })
+      }
     }
   }
-
   window.onload = function () {
     var editableCodeMirror = CodeMirror.fromTextArea(document.getElementById('codem'), {
       mode: 'yaml',
@@ -80,7 +90,6 @@
       lineNumbers: true
     })
     editableCodeMirror.setSize('100%', 600)
-    console.debug(editableCodeMirror)
   }
 
 </script>
