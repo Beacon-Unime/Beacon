@@ -4,7 +4,7 @@ var config = require('./webpack.dev.conf.js')
 var proxyMiddleware = require('http-proxy-middleware')
 
 // default port where dev server listens for incoming traffic
-var port = process.env.PORT || 8080
+var port = process.env.PORT || 9090
 
 var app = express()
 var compiler = webpack(config)
