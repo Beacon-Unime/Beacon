@@ -1,1 +1,4 @@
 node_modules
+npm-debug.log
+os2osdashboard/test/local
+os2osdashboard/test/remote
