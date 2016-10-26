@@ -23,13 +23,16 @@ module.exports = {
   el () { return '#templates' },
   data () {
     return {
-      columns: ['uuid', 'name', 'user', 'version', 'date', 'edit', 'status', 'deploy'],
+      columns: ['name', 'user', 'version', 'insertTimestamp', 'edit', 'status', 'deploy'],
       options: {
         filterable: false,
         pagination: {
           dropdown: false
         },
         templates: {
+          insertTimestamp: function (row) {
+            return (new Date(row.insertTimestamp)).toString('YYYY MM')
+          },
           edit: function (row) {
             return "<a href='#!/templates/" + row.id + "/edit'><i class='fa fa-edit fa-fw'></i></a>"
           },
