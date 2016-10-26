@@ -214,7 +214,7 @@
                   <li><a href="#"><i class="fa fa-gear fa-fw"></i> Settings</a>
                   </li>
                   <li class="divider"></li>
-                  <li><a href="login.html"><i class="fa fa-sign-out fa-fw"></i> Logout</a>
+                  <li><a v-link="{ path: '/login' }" @click="logout()"><i class="fa fa-sign-out fa-fw"></i> Logout</a>
                   </li>
               </ul>
               <!-- /.dropdown-user -->
@@ -241,4 +241,12 @@
 </template>
 
 <script>
+  export default {
+    methods: {
+      logout () {
+        window.localStorage.setItem('un', '')
+        console.info('logged out')
+      }
+    }
+  }
 </script>
