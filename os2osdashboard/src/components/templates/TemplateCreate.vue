@@ -77,7 +77,7 @@
         this.$http.post(endpoint + 'templates/', req).then((response) => {
           console.log('SUCCESS')
         }, (response) => {
-          window.alert('Unauthorized access')
+          window.alert('Access not authorised')
           console.error(response)
         })
       }
