@@ -4,7 +4,7 @@
 
 <template>
 <div>
-  <h3>Sample Template 1</h3>
+  <h3>{{title}}</h3>
   <div id="map"></div>
 </div>
 </template>
@@ -18,7 +18,20 @@ var colors = {
   'warning': '#FF8C00'
 }
 
+function getTitle (uuid) {
+  if (uuid) {
+    return 'Template ' + uuid
+  } else {
+    return 'Deployments'
+  }
+}
+
 export default {
+  data () {
+    return {
+      title: getTitle(this.$route.params.templateUuid)
+    }
+  },
   ready: function () {
     /* eslint-disable */
     this.map = new L.map('map', {inertia: false, zoomControl: false}).setView([20, 0], 2)
@@ -77,8 +90,10 @@ export default {
       }*/
 
       if (this.$route.params.templateUuid) {
-        var api_method_path = 'http://10.9.240.10:8080/OSFFM/os2os/demo/templates/' + this.$route.params.templateUuid + '/runTime'
-        this.$http.get(api_method_path).then((response) => {
+        window.setTimeout(function () { deploy(this.map, clouds[0], clouds[1]) }.bind(this), 1)
+        /*
+        var path = 'http://10.9.240.10:8080/OSFFM/os2os/demo/templates/' + this.$route.params.templateUuid + '/runTime'
+        this.$http.get(path).then((response) => {
           console.error(response.data)
           var template = response.data
           console.error(template.templates.Links)
@@ -89,8 +104,7 @@ export default {
         }, (response) => {
           console.error('error')
         })
-      } else {
-        console.error('nope')
+        */
       }
     }, function (response) {
       // error callback
