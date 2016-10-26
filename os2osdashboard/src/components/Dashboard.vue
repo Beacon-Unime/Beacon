@@ -12,4 +12,13 @@ import Vue from 'vue'
 
 var Map = Vue.extend(require('./Map.vue'))
 Vue.component('map', Map)
+/*  export default {
+  route: {
+    // Check the users auth status before
+    // allowing navigation to the route
+    canActivate () {
+      return auth.user.authenticated
+    }
+  }
+}*/
 </script>

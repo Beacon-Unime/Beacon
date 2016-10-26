@@ -4,8 +4,20 @@ export function configRouter (router) {
     '/dashboard': {
       component: require('./components/Dashboard.vue')
     },
+    '/dashboard/:templateUuid': {
+      component: require('./components/Dashboard.vue')
+    },
+    '/login': {
+      component: require('./components/Login.vue')
+    },
+    '/logout': {
+      component: require('./components/Login.vue')
+    },
     '/templates': {
       component: require('./components/templates/Templates.vue')
+    },
+    '/templates/create': {
+      component: require('./components/templates/TemplateCreate.vue')
     },
     '/templates/:templateUuid': {
       component: require('./components/templates/Template.vue'),

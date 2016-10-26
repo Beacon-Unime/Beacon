@@ -41,7 +41,7 @@
     </div>
     <div class="col-lg-5">
       <button class="btn btn-primary" v-on:click="editTemplate">Save</button>
-      <a href='#!/dashboard'>Save and Deploy<i class='fa fa-play-circle fa-fw'></i></a><br/>
+      <!--a href='#!/dashboard'>Save and Deploy<i class='fa fa-play-circle fa-fw'></i></a><br/-->
     </div>
 
     <textarea rows="8" cols="50" name="codem" id="codem">
@@ -55,7 +55,9 @@
   import Vue from 'vue'
   import VueResource from 'vue-resource'
   Vue.use(VueResource)
-  var endpoint = 'http://10.9.240.10:8080/OSFFM/os2os/beacon/'
+  // var endpoint = '/static/test/'
+
+  var endpoint = 'http://10.9.240.10:8080/OSFFM/os2os/demo/'
   module.exports = {
     el () {
       return '#template'
@@ -66,7 +68,9 @@
       }
     },
     ready: function () {
-      this.$http.get(endpoint + 'templates/' + this.$route.params.id).then((response) => {
+      this.$http.headers.common['Access-Control-Allow-Origin'] = 'http://localhost:9090'
+      this.$http.get(endpoint + 'templates/' + this.$route.params.templateUuid).then((response) => {
+        console.error(response.data)
         var template = response.data
         template.creationDate = new Date(template.insertTimestamp)
         template.hasParent = (template.templateRef !== 'null')
@@ -77,7 +81,8 @@
     },
     methods: {
       editTemplate: function () {
-        this.$http.put(endpoint + 'templates/' + this.template.id, this.template).then((response) => {
+        console.log('SUCCESS?')
+        this.$http.post(endpoint + 'templates/' + this.template.id, this.template).then((response) => {
           console.log('SUCCESS')
         })
       }

@@ -7,7 +7,7 @@ Vue.use(VueRouter)
 Vue.use(VueResource)
 
 // Create a router instance.
-const router = new VueRouter({
+export const router = new VueRouter({
 })
 configRouter(router)
 

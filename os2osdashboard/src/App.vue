@@ -30,5 +30,6 @@ import Vue from 'vue'
 
 var NavBar = Vue.extend(require('./components/NavBar.vue'))
 Vue.component('navbar', NavBar)
-
+console.error('USERNAME: ')
+console.error(window.localStorage.getItem('un'))
 </script>

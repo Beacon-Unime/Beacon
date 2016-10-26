@@ -4,9 +4,12 @@
 <template>
 <div id="templates">
   <!-- example format: see /static/test/templates.json-->
-  <!-- http://10.9.240.10:8080/OSFFM/os2os/beacon/templates/ -->
-  <v-server-table url="http://10.9.240.10:8080/OSFFM/os2os/beacon/templates/" :columns="columns" :options="options"></v-server-table>
+  <!-- http://10.9.240.10:8080/OSFFM/os2os/demo/templates/ -->
+  <v-server-table url="http://10.9.240.10:8080/OSFFM/os2os/demo/templates/" :columns="columns" :options="options"></v-server-table>
 </div>
+
+<a href='#!/templates/create'>Create template<i class='fa fa-play-circle fa-fw'></i></a>
+
 </template>
 
 <script>
@@ -22,13 +25,25 @@ module.exports = {
     return {
       columns: ['uuid', 'name', 'user', 'version', 'date', 'edit', 'status', 'deploy'],
       options: {
+        filterable: false,
+        pagination: {
+          dropdown: false
+        },
         templates: {
-          edit: "<a href='#!/templates/{uuid}/edit'><i class='fa fa-edit fa-fw'></i></a>",
-          status: "<a href='#!/templates/{uuid}/map'><i class='fa fa-globe fa-fw'></i></a>",
-          deploy: "<a href='#!/templates/{uuid}/deploy'><i class='fa fa-play-circle fa-fw'></i></a>"
+          edit: function (row) {
+            return "<a href='#!/templates/" + row.id + "/edit'><i class='fa fa-edit fa-fw'></i></a>"
+          },
+          status: function (row) {
+            return "<a href='#!/dashboard/" + row.id + "'><i class='fa fa-globe fa-fw'></i></a>"
+          },
+          deploy: function (row) {
+            return "<a href='#!/templates/" + row.id + "/deploy'><i class='fa fa-play-circle fa-fw'></i></a>"
+          }
         }
       }
     }
   }
 }
+import auth from '../../auth'
+console.error(auth.user)
 </script>

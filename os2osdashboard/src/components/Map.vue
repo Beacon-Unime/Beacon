@@ -31,10 +31,10 @@ export default {
     layer01.addTo(this.map)
     // Disable drag and zoom handlers.
 
-    this.map.dragging.disable()
-    this.map.touchZoom.disable()
-    this.map.doubleClickZoom.disable()
-    this.map.scrollWheelZoom.disable()
+    // this.map.dragging.disable()
+    // this.map.touchZoom.disable()
+    // this.map.doubleClickZoom.disable()
+    // this.map.scrollWheelZoom.disable()
     this.map.keyboard.disable()
 
     // Disable tap handler, if present.
@@ -55,7 +55,7 @@ export default {
         console.info('deploy from ' + sourceCloud.name + ' to ' + destinationCloud.name)
         destinationCloud.deployment_link = new AntPath([sourceCloud.center, destinationCloud.center], {color: '#0d71bb', weight: 4})
         destinationCloud.deployment_link.addTo(map)
-        window.setTimeout(function () { deployed(map, sourceCloud, destinationCloud) }, 5000)
+        window.setTimeout(function () { deployed(map, sourceCloud, destinationCloud) }, 1)
       }
 
       function deployed (map, sourceCloud, destinationCloud) {
@@ -65,7 +65,7 @@ export default {
         destinationCloud.deployment_link.addTo(map)
       }
 
-      function undeploy (map, sourceCloud, destinationCloud) {
+      /* function undeploy (map, sourceCloud, destinationCloud) {
         console.info('undeploy from ' + sourceCloud.name + ' to ' + destinationCloud.name)
         destinationCloud.deployment_link.setStyle({color: colors['inactive']})
         destinationCloud.marker.setStyle({color: colors['inactive']})
@@ -74,12 +74,24 @@ export default {
 
       function undeployed (map, sourceCloud, destinationCloud) {
         map.removeLayer(destinationCloud.deployment_link)
-      }
+      }*/
 
-      window.setTimeout(function () { deploy(this.map, clouds[0], clouds[1]) }.bind(this), 10000)
-      window.setTimeout(function () { deploy(this.map, clouds[0], clouds[2]) }.bind(this), 15000)
-      window.setTimeout(function () { undeploy(this.map, clouds[1], clouds[0]) }.bind(this), 25000)
-      window.setTimeout(function () { undeploy(this.map, clouds[2], clouds[0]) }.bind(this), 1000)
+      if (this.$route.params.templateUuid) {
+        var api_method_path = 'http://10.9.240.10:8080/OSFFM/os2os/demo/templates/' + this.$route.params.templateUuid + '/runTime'
+        this.$http.get(api_method_path).then((response) => {
+          console.error(response.data)
+          var template = response.data
+          console.error(template.templates.Links)
+          console.error(template.templates.Links.length)
+          if (template.templates.Links.length > 0) {
+            window.setTimeout(function () { deploy(this.map, clouds[0], clouds[1]) }.bind(this), 1)
+          }
+        }, (response) => {
+          console.error('error')
+        })
+      } else {
+        console.error('nope')
+      }
     }, function (response) {
       // error callback
     })
